@@ -2,7 +2,7 @@
 
 A fun AWS-powered web app that shows real-time visitor count and compliments visitors by name.
 
-👉 [Live Demo Here](http://your-s3-link-here)
+👉 [Live Demo Here](https://visitor-counter-yourname.s3.us-east-1.amazonaws.com/index.html)
 
 ## Built With
 
