@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Real-Time Visitor Counter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    #compliment {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <h1>👋 Welcome to My Site!</h1>
+  <p><strong>This is where Paul is having fun 🎉</strong></p>
+  <p>You are visitor number: <strong id="counter">...</strong></p>
+
+  <input type="text" id="nameInput" placeholder="Enter your name" />
+  <br>
+  <button onclick="showCompliment()">Submit</button>
+  <p id="compliment"></p>
+
+  <script>
+    let visitorCount = 0;
+
+    async function updateVisitorCount() {
+      try {
+        const response = await fetch('https://a2tr5w04og.execute-api.us-east-1.amazonaws.com/count');
+        const count = await response.text();
+        document.getElementById('counter').textContent = count;
+        visitorCount = count;
+      } catch (error) {
+        document.getElementById('counter').textContent = 'Error';
+        console.error('Error fetching visitor count:', error);
+      }
+    }
+
+    function showCompliment() {
+      const name = document.getElementById('nameInput').value.trim();
+      const compliment = name 
+        ? `${name}, you are absolutely beautiful and gorgeous! 🌟 You are visitor number ${visitorCount}!`
+        : 'Please enter your name!';
+      document.getElementById('compliment').textContent = compliment;
+    }
+
+    updateVisitorCount();
+  </script>
+</body>
+</html>
